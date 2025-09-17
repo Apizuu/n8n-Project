@@ -1,0 +1,20 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "powershell -Command \"$ip = (Get-NetIPAddress -AddressFamily IPv4 | Where-Object { $_.InterfaceAlias -match 'Wi-Fi|WiFi' -and $_.IPAddress -like '192.168.*' } | Select-Object -First 1 -ExpandProperty IPAddress); Write-Host 'n8n running at: http://'$ip':5678'; cross-env N8N_EDITOR_BASE_URL=http://$($ip):5678 WEBHOOK_URL=http://$($ip):5678 dotenv -e .env -- n8n start\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "n8n": "^1.110.1"
+  },
+  "devDependencies": {
+    "cross-env": "^10.0.0",
+    "dotenv-cli": "^10.0.0"
+  }
+}
